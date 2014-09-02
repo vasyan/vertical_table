@@ -8,8 +8,11 @@ td {
   vertical-align:middle;
 }
 
-th.vertical {
- height: 180px;
+th.vertical span {
+  height: 180px;
+  vertical-align: bottom;
+  white-space: nowrap;
+  font-family: sans-serif;
 }
 
 .no-csstransitions.svg .vertical {
@@ -21,17 +24,13 @@ th.vertical {
   -moz-transform: rotate(-90deg);
   -o-transform: rotate(-90deg);
   transform: rotate(-90deg);
-
-  /* also accepts left, right, top, bottom coordinates; not required, but a good idea for styling */
-  -webkit-transform-origin: 100% 100%;
-  -moz-transform-origin: 100% 100%;
-  -o-transform-origin: 100% 100%;
-  transform-origin: 100% 100%;
-
-  /* Should be unset in IE9+ I think. */
+  -webkit-transform-origin: 50% 50%;
+  -moz-transform-origin: 50% 50%;
+  -o-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
   width: 170px;
 }
 .lt-ie9 .vertical div {
-  width: 170px;
+  position: absolute;
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
