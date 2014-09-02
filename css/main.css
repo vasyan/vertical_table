@@ -1,0 +1,37 @@
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+td {
+  text-align:center;
+  vertical-align:middle;
+}
+
+th.vertical {
+ height: 180px;
+}
+
+.no-csstransitions.svg .vertical {
+  white-space: nowrap;
+}
+
+.csstransitions .vertical div {
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+
+  /* also accepts left, right, top, bottom coordinates; not required, but a good idea for styling */
+  -webkit-transform-origin: 100% 100%;
+  -moz-transform-origin: 100% 100%;
+  -o-transform-origin: 100% 100%;
+  transform-origin: 100% 100%;
+
+  /* Should be unset in IE9+ I think. */
+  width: 170px;
+}
+.lt-ie9 .vertical div {
+  width: 170px;
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
