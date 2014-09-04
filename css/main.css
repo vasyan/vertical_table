@@ -13,7 +13,7 @@ th, td {
 }
 
 /* ie filters */
-.lt-ie9 .table-with-vertical-headers .vertical-header .text-container {
+.lt-ie9 .target-table .vertical-header .text-container {
   white-space: nowrap;
   display: inline;
   padding: 20px 0;
