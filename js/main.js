@@ -3,6 +3,28 @@ window.onload = function() {
   htmlElement.className = htmlElement.className.replace(/no-js/, "");
 
   var classesList = htmlElement.className;
+
+  if (classesList.match(/[^(no\-)]csstransitions/)) {
+    var adjustTableHeadersWidth = function(table) {
+      var thList = table.querySelectorAll(".vertical-header"),
+        headerRow = table.querySelector(".header-row"),
+        length = thList.length,
+        thWidth,
+        maxWidth,
+        i;
+
+      for (i = 0; i < length; i++) {
+        thWidth = thList[i].offsetWidth;
+        maxWidth = (maxWidth > thWidth) ? maxWidth : thWidth;
+      }
+
+    headerRow.style.height = maxWidth + "px";
+
+    }
+    var table = document.querySelector(".target-table");
+    // adjustTableHeadersWidth(table);
+  }
+
   if (classesList.match(/no-csstransitions/) && classesList.match(/[^(no\-)]svg/)) {
     var template = function(template, data) {
       return template.replace(/\{\{(\w*)\}\}/g, function(m, key) {
@@ -36,7 +58,7 @@ window.onload = function() {
 
       for(i = 0; i < length; i++) {
         elem = divsList[i];
-        textValue = elem.innerHTML;
+        textValue = elem.innerHTML; //textContent
         height = elem.clientHeight;
         width = originalHeadersWidth[i];
         obj = objElement.cloneNode(true);

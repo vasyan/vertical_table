@@ -1,9 +1,13 @@
-.table-with-vertical-headers table, th, td {
+th, td {
   border: 1px solid black;
   border-collapse: collapse;
 }
 
-.table-with-vertical-headers td {
+.target-table {
+  overflow: hidden;
+}
+
+.target-table td {
   text-align:center;
   vertical-align:middle;
 }
@@ -39,12 +43,7 @@
   white-space: nowrap;
 }
 
-/*.csstransitions .table-with-vertical-headers .vertical-header {
-  width: 16px;
-  height: 100px;
-}*/
-
-.csstransitions .table-with-vertical-headers .vertical-header .text-container {
+.csstransitions .target-table .vertical-header .text-container {
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
@@ -58,7 +57,20 @@
   white-space: nowrap;
   overflow: visible;
   font-size: 16px;
+  padding: 10px 0;
+  display: table-cell;
+  line-height: 1.5;
+}
+
+.csstransitions .target-table .vertical-header .width-corrector {
   display: inline-block;
+  width: 1.5em;
+}
+
+.csstransitions .target-table .vertical-header .text-container:after {
+  content: "";
+  display: block;
+  margin: -1.5em 0 100%;
 }
 
 
