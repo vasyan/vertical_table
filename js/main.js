@@ -4,10 +4,14 @@ window.onload = function() {
 
   var classesList = htmlElement.className;
 
-  // var needSvgRotation = classesList.match(/no-csstransitions/) && classesList.match(/[^(no\-)]svg/)
+  var needSvgRotation = classesList.match(/no-csstransforms3d/) && classesList.match(/[^(no\-)]svg/);
 
   // TODO no-csstransforms3d
-  if (classesList.match(/no-csstransitions/) && classesList.match(/[^(no\-)]svg/)) {
+  if (needSvgRotation) {
+
+    var table = document.getElementsByClassName("target-table")[0];
+    // table.className = table.className + " invisible";
+
     var template = function(template, data) {
       return template.replace(/\{\{(\w*)\}\}/g, function(m, key) {
         return data.hasOwnProperty(key) ? data[key] : "";
@@ -18,8 +22,8 @@ window.onload = function() {
       var svgTemplate = [
         "data:image/svg+xml;charset/utf-8,",
         "<svg xmlns=\"http://www.w3.org/2000/svg\">",
-        "<text x=\"{{x}}\" y=\"{{y}}\" style=\"font-family:{{fontFamily}}; ",
-        "font-size:{{fontSize}}px; font-weight:{{fontWeight}}; ",
+        "<text x=\"{{x}}\" y=\"{{y}}\" style=\"font-family:'{{fontFamily}}'; ",
+        "font-size:{{fontSize}}px; font-weight:'{{fontWeight}}'; ",
         "text-anchor:finish\" transform=\"rotate(-90)\">{{textValue}}</text>",
         "</svg>"
       ].join("");
@@ -30,7 +34,7 @@ window.onload = function() {
         headerElementSample = document.createElement("th"),
         objectElementSample = document.createElement("object"),
         length = headersList.length,
-        fontSize = computedStyles.getPropertyValue("font-size"),
+        fontSize = parseFloat(computedStyles.getPropertyValue("font-size")),
         fontFamily = computedStyles.getPropertyValue("font-family"),
         fontWeight = computedStyles.getPropertyValue("font-weight"),
         textContent,
@@ -41,20 +45,24 @@ window.onload = function() {
         elem,
         i;
 
+      // opera fix
+      fontFamily = (fontFamily === "\"Times New Roman\"") ? "serif" : fontFamily;
+
       for (i = 0; i < length; i++) {
         elem = headersList[i];
-        textContent = elem.textContent.replace(/(^\s+|\s+$)/g, "");
-        width = elem.offsetWidth;
-        height = elem.offsetHeight;
+        width = parseFloat(elem.offsetWidth);
+        height = parseFloat(elem.offsetHeight);
         svgObject = objectElementSample.cloneNode(true);
         header = headerElementSample.cloneNode(true);
+        textContent = elem.textContent.replace(/(^\s+|\s+$|<\/?[^>]+(>|$))/g, ""); // trim spaces and escape markup
 
         svgObject.height = (height > width) ? height : width;
+        svgObject.height = svgObject.height;
         svgObject.type = "image/svg+xml";
         svgObject.width = fontSize;
         svgObject.data = template(svgTemplate, {
           x: -(svgObject.height),
-          y: fontSize,
+          y: fontSize * 0.75, // alignment on the small letter
           fontSize: fontSize,
           fontFamily: fontFamily,
           textValue: textContent,
@@ -75,9 +83,10 @@ window.onload = function() {
 
       headerRow.appendChild(rowFragment);
 
+      table.style["visibility"] = "visible";
     };
 
-    var table = document.getElementsByClassName("target-table")[0];
+
     rotateTableHeader(table);
   }
 };

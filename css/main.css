@@ -3,6 +3,10 @@ th, td {
   border-collapse: collapse;
 }
 
+.invisible {
+  visibility: hidden;
+}
+
 .target-table {
   overflow: hidden;
 }
@@ -14,41 +18,38 @@ th, td {
 
 /* ie filters */
 .lt-ie9 .target-table .vertical-header .text-container {
-  white-space: nowrap;
   display: inline;
   padding: 20px 0;
   writing-mode: tb-rl;
-  filter:flipH flipV;
-  background: #FFFFFF;
+  filter: flipH flipV;
+  white-space: nowrap;
 }
 
-
-/*th.vertical span {
-  height: 180px;
-  vertical-align: bottom;
-  white-space: nowrap;
-  font-family: sans-serif;
-}*/
-
-/* one-letter-per-line fallback */
 .table-with-vertical-headers .vertical-header .text-container {
   display: inline-block;
   width: 1em;
-  word-wrap: break-word;
   font-family: monospace;
+  word-wrap: break-word;
   white-space: pre;
 }
 
-.no-csstransitions.svg .vertical-header .text-container {
+.no-csstransforms3d.svg .vertical-header .text-container {
   white-space: nowrap;
+}
+
+/* hidden on svg rotation process */
+.no-csstransforms3d.svg .target-table {
+  visibility: hidden;
 }
 
 .vertical-header .text-container {
   white-space: nowrap;
 }
 
-
 .csstransitions .target-table .vertical-header .text-container {
+  display: table-cell; /* alignment on the bottom */
+  padding: 10px 0;
+  line-height: 1.5;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
@@ -62,9 +63,6 @@ th, td {
   white-space: nowrap;
   overflow: visible;
   font-size: 16px;
-  padding: 10px 0;
-  display: table-cell; /* alignment on the bottom */
-  line-height: 1.5;
 }
 
 .csstransitions .target-table .vertical-header .width-corrector {
@@ -73,7 +71,11 @@ th, td {
 }
 
 .csstransitions .target-table .vertical-header .text-container:after {
-  content: "";
   display: block;
+  content: "";
   margin: -1.5em 0 100%;
+}
+
+.header-row th{
+  padding: 20px 0;
 }
