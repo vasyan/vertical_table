@@ -1,36 +1,92 @@
-table, th, td {
+.table-with-vertical-headers table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
 }
 
-td {
+.table-with-vertical-headers td {
   text-align:center;
   vertical-align:middle;
 }
 
-th.vertical span {
+/* ie filters */
+.lt-ie9 .table-with-vertical-headers .vertical-header .text-container {
+  white-space: nowrap;
+  display: inline;
+  padding: 20px 0;
+  writing-mode:tb-rl;
+  filter:flipH flipV;
+  background:#fff;
+}
+
+
+/*th.vertical span {
   height: 180px;
   vertical-align: bottom;
   white-space: nowrap;
   font-family: sans-serif;
+}*/
+
+/* one-letter-per-line fallback */
+.no-js .table-with-vertical-headers .vertical-header .text-container{
+  display: inline-block;
+  width: 1em;
+  word-wrap: break-word;
+  font-family: monospace;
+  white-space: pre;
 }
 
 .no-csstransitions.svg .vertical {
   white-space: nowrap;
 }
 
-.csstransitions .vertical div {
+/*.csstransitions .table-with-vertical-headers .vertical-header {
+  width: 16px;
+  height: 100px;
+}*/
+
+.csstransitions .table-with-vertical-headers .vertical-header .text-container {
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
   -o-transform: rotate(-90deg);
   transform: rotate(-90deg);
   -webkit-transform-origin: 50% 50%;
   -moz-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
   -o-transform-origin: 50% 50%;
   transform-origin: 50% 50%;
-  width: 170px;
+  white-space: nowrap;
+  overflow: visible;
+  font-size: 16px;
+  display: inline-block;
 }
-.lt-ie9 .vertical div {
-  position: absolute;
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+
+
+
+/*.csstransitions .table-with-vertical-headers .vertical-header {
+  display: inline-block;
+  overflow: hidden;
+  width: 1.5em;
 }
+.csstransitions .table-with-vertical-headers .vertical-header .text-container {
+  display: inline-block;
+  white-space: nowrap;
+
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  -webkit-transform-origin: 100% 100%;
+  -moz-transform-origin: 100% 100%;
+  -ms-transform-origin: 100% 100%;
+  -o-transform-origin: 100% 100%;
+  transform-origin: 100% 100%;
+}
+
+.csstransitions .table-with-vertical-headers .vertical-header .text-container:after {
+  content: "";
+  display: block;
+  margin: -1.5em 0 100%;
+}
+*/
