@@ -16,15 +16,19 @@ th, td {
   vertical-align: middle;
 }
 
-/* ie filters */
-.lt-ie9 .target-table .vertical-header .text-container {
-  display: inline;
-  padding: 20px 0;
-  writing-mode: tb-rl;
-  filter: flipH flipV;
+.vertical-header .text-container {
   white-space: nowrap;
 }
 
+/* ie filters */
+.lt-ie9 .target-table .vertical-header .text-container {
+  display: inline;
+  padding: 10px 0;
+  writing-mode: tb-rl;
+  filter: flipH flipV;
+}
+
+/* one letter per line fallback */
 .table-with-vertical-headers .vertical-header .text-container {
   display: inline-block;
   width: 1em;
@@ -33,21 +37,17 @@ th, td {
   white-space: pre;
 }
 
-.no-csstransforms3d.svg .vertical-header .text-container {
-  white-space: nowrap;
-}
-
-/* hidden on svg rotation process */
+/* скрытие таблицы на время генерации svg */
 .no-csstransforms3d.svg .target-table {
   visibility: hidden;
 }
 
-.vertical-header .text-container {
-  white-space: nowrap;
+.no-csstransforms3d.svg .target-table .svg-header {
+  padding: 10px 0;
 }
 
-.csstransitions .target-table .vertical-header .text-container {
-  display: table-cell; /* alignment on the bottom */
+.csstransforms3d .target-table .vertical-header .text-container {
+  display: table-cell; /* выравнивание по боттому */
   padding: 10px 0;
   line-height: 1.5;
   -webkit-transform: rotate(-90deg);
@@ -60,22 +60,20 @@ th, td {
   -ms-transform-origin: 50% 50%;
   -o-transform-origin: 50% 50%;
   transform-origin: 50% 50%;
-  white-space: nowrap;
   overflow: visible;
   font-size: 16px;
 }
 
-.csstransitions .target-table .vertical-header .width-corrector {
+.csstransforms3d .target-table .vertical-header .width-corrector {
   display: inline-block;
   width: 1.5em;
 }
 
-.csstransitions .target-table .vertical-header .text-container:after {
+/* MAGIC */
+/* вертикальное растягивание ячейки после ротейта контента */
+.csstransforms3d .target-table .vertical-header .text-container:after {
   display: block;
   content: "";
   margin: -1.5em 0 100%;
 }
 
-.header-row th{
-  padding: 20px 0;
-}

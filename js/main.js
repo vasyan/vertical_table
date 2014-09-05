@@ -3,14 +3,11 @@ window.onload = function() {
   htmlElement.className = htmlElement.className.replace(/no-js/, "");
 
   var classesList = htmlElement.className;
-
   var needSvgRotation = classesList.match(/no-csstransforms3d/) && classesList.match(/[^(no\-)]svg/);
 
-  // TODO no-csstransforms3d
   if (needSvgRotation) {
 
     var table = document.getElementsByClassName("target-table")[0];
-    // table.className = table.className + " invisible";
 
     var template = function(template, data) {
       return template.replace(/\{\{(\w*)\}\}/g, function(m, key) {
@@ -45,6 +42,8 @@ window.onload = function() {
         elem,
         i;
 
+      headerElementSample.className = "svg-header";
+
       // opera fix
       fontFamily = (fontFamily === "\"Times New Roman\"") ? "serif" : fontFamily;
 
@@ -72,7 +71,6 @@ window.onload = function() {
         rowFragment.appendChild(header);
       }
 
-      // clear headers row
       try {
         headerRow.innerHTML = "";
       } catch(e) {
@@ -85,7 +83,6 @@ window.onload = function() {
 
       table.style["visibility"] = "visible";
     };
-
 
     rotateTableHeader(table);
   }
