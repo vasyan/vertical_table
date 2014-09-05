@@ -73,6 +73,7 @@ window.onload = function() {
         rowFragment.appendChild(header);
       }
 
+      // clear row
       try {
         headerRow.innerHTML = "";
       } catch(e) {
