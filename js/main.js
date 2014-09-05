@@ -1,6 +1,7 @@
 window.onload = function() {
+
   var htmlElement = document.getElementsByTagName("html")[0];
-  htmlElement.className = htmlElement.className.replace(/no-js/, "");
+  htmlElement.className = htmlElement.className.replace(/no-js/, ""); // js-enable
 
   var classesList = htmlElement.className;
   var needSvgRotation = classesList.match(/no-csstransforms3d/) && classesList.match(/[^(no\-)]svg/);
@@ -9,6 +10,7 @@ window.onload = function() {
 
     var table = document.getElementsByClassName("target-table")[0];
 
+    // simple template engine
     var template = function(template, data) {
       return template.replace(/\{\{(\w*)\}\}/g, function(m, key) {
         return data.hasOwnProperty(key) ? data[key] : "";
@@ -86,4 +88,5 @@ window.onload = function() {
 
     rotateTableHeader(table);
   }
+
 };

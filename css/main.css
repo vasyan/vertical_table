@@ -21,20 +21,21 @@ th, td {
 }
 
 /* ie filters */
-.lt-ie9 .target-table .vertical-header .text-container {
+.lt-ie9 .text-container {
   display: inline;
-  padding: 10px 0;
+  padding: 1em 0;
   writing-mode: tb-rl;
   filter: flipH flipV;
 }
 
 /* one letter per line fallback */
-.table-with-vertical-headers .vertical-header .text-container {
+.no-js .text-container {
   display: inline-block;
   width: 1em;
   font-family: monospace;
   word-wrap: break-word;
   white-space: pre;
+  padding-bottom: 1em;
 }
 
 /* скрытие таблицы на время генерации svg */
@@ -42,13 +43,13 @@ th, td {
   visibility: hidden;
 }
 
-.no-csstransforms3d.svg .target-table .svg-header {
-  padding: 10px 0;
+.no-csstransforms3d.svg .svg-header {
+  padding: 1em 0 1em;
 }
 
-.csstransforms3d .target-table .vertical-header .text-container {
+.csstransforms3d .text-container {
   display: table-cell; /* выравнивание по боттому */
-  padding: 10px 0;
+  padding: 1em 0;
   line-height: 1.5;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
@@ -64,14 +65,14 @@ th, td {
   font-size: 16px;
 }
 
-.csstransforms3d .target-table .vertical-header .width-corrector {
+.csstransforms3d .width-corrector {
   display: inline-block;
   width: 1.5em;
 }
 
 /* MAGIC */
 /* вертикальное растягивание ячейки после ротейта контента */
-.csstransforms3d .target-table .vertical-header .text-container:after {
+.csstransforms3d .text-container:after {
   display: block;
   content: "";
   margin: -1.5em 0 100%;
